@@ -2,6 +2,10 @@
 
 namespace app\controllers;
 
+
+use app\models\Author;
+use app\models\Books;
+
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -61,7 +65,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
+        $this->layout = 'main-front.php';
+        $model_books = Books::find()->all();
+        $model_author =  Author::find()->all();
+
+        return $this->render('index', compact('model_books', 'model_author'));
+
         return $this->render('index');
+
     }
 
     /**

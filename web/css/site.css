@@ -113,3 +113,35 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+
+.top-line-info{
+    display: flex;
+}
+
+.top-line-info h3{
+    padding: 4px 10px 4px 0px;
+}
+
+.book-info, .author-info{
+    display: flex;
+    border-bottom: 1px solid #1b1e21;
+}
+
+.book-info h4, .author-info h4{
+    padding: 4px 10px 4px 0px;
+}
+
+.container-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.book-info h4, .author-info h4{
+    min-width: 20%;
+}
+
+.top-line-info h3{
+    min-width: 20%;
+}
+

@@ -14,7 +14,11 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'oECJAtrrF4T8i-h85eDkHmQrLbt9i90u',
+            'cookieValidationKey' => '3yL50QUt26OovUb795i79R4a8d3vWO0p',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
+            'baseUrl' => '',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -43,14 +47,40 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
+
             'showScriptName' => false,
             'rules' => [
+                '' => 'site/index',
+                'admin/books' => 'books',
+                'admin/authors' => 'author',
+                'api/v1/books/list' => 'api/v1/book',
+                'api/v1/books/by-id/<id:\d+>' =>'api/v1/book/view',
+                'api/v1/books/update/<id:\d+>' =>'api/v1/book/update',
+                'api/v1/books/<id:\d+>' =>'api/v1/book/delete',
+                // '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'api',
+                    'pluralize' => false
+                ],
+            ],
+
+        ],
+
+        'response' => [
+            // ...
+            'formatters' => [
+                \yii\web\Response::FORMAT_JSON => [
+                    'class' => 'yii\web\JsonResponseFormatter',
+                    'prettyPrint' => YII_DEBUG, // используем "pretty" в режиме отладки
+                    'encodeOptions' => JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
+                    // ...
+                ],
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
